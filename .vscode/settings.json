@@ -1,0 +1,56 @@
+{
+    "python.languageServer": "Pylance",
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.diagnosticSeverityOverrides": {
+        "reportMissingModuleSource": "none"
+    },
+    "python.analysis.typeshedPaths": [
+        ".venv/Lib/python3.10/site-packages"
+    ],
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": false,
+    "actionButtons": {
+        "loadNpmCommands":false, // Disables automatic generation of actions for npm commands.
+        "commands": [
+            {
+                "cwd": "${workspaceFolder}",
+                "name": "REPL",
+                "singleInstance": true,
+                "command": "screen /dev/tty.usbserial-210 115200",
+            },
+            {
+                "cwd": "${workspaceFolder}",
+                "name": "Upload .py",
+                "singleInstance": true,
+                "command": "echo",
+                "extraCommands": [
+                    "ampy --port /dev/tty.usbserial-210 put src/nextion.py",
+                    "ampy --port /dev/tty.usbserial-210 put src/quotes.py",
+                    "ampy --port /dev/tty.usbserial-210 put src/boot.py",
+                    "ampy --port /dev/tty.usbserial-210 put src/main.py",
+                    "ampy --port /dev/tty.usbserial-210 ls"
+                ]
+            },
+            {
+                "cwd": "${workspaceFolder}",
+                "name": "Upload .tft",
+                "singleInstance": true,
+                "command": "echo",
+                "extraCommands": [
+                    "ampy --port /dev/tty.usbserial-210 put tft/quotes.tft",
+                    "ampy --port /dev/tty.usbserial-210 ls"
+                ]
+            },
+            {
+                "cwd": "${workspaceFolder}",
+                "name": "Upload .json",
+                "singleInstance": true,
+                "command": "echo",
+                "extraCommands": [
+                    "ampy --port /dev/tty.usbserial-210 put data/quotes.json",
+                    "ampy --port /dev/tty.usbserial-210 ls"
+                ]
+            },
+        ]
+    }
+}
