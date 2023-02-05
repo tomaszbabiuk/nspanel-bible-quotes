@@ -5,7 +5,7 @@ class NextQuoteAction(NextionAction):
     def __init__(self, writer: NextionWriter):
         super().__init__(writer)
         with open("quotes.json", "r") as f:
-            self.quotes = json.load(f)["quotes"]
+            self.quotes = json.load(f)["pl"]
             self.count = len(self.quotes)
             self.i = 0
 
@@ -14,7 +14,12 @@ class NextQuoteAction(NextionAction):
 
     def act(self, data: bytearray):
         quote = self.quotes[self.i % self.count]
-        self.writer.write('titleTxt.txt="{}"'.format(quote["from"]))
+        self.writer.write('titleTxt.txt="', insertDelimeter=False)
+        self.writer.write(quote["from"], insertDelimeter=False)
+        self.writer.write('"')
+
+        print(quote["from"])
+
         self.writer.write('messageTxt.txt="{}"'.format(quote["quote"]))
         self.i += 1
 

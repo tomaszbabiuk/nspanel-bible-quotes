@@ -19,3 +19,9 @@ reader = NextionReader(uart, actionsBag)
 while True:
     reader.readAndParse()
     time.sleep_ms(50)
+
+# quotes = []
+# with open("quotes.json", "r") as f:
+#     quotes = json.load(f)["pl"]
+
+# print(quotes)
